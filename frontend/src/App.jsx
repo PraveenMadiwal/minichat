@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
@@ -16,8 +17,6 @@ import ResetPasswordPage from "./pages/ResetPassword";
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
-
-  console.log(onlineUsers)
 
   useEffect(() => {
     checkAuth();
@@ -41,15 +40,32 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
-        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route
+          path="/"
+          element={authUser ? <HomePage /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/signup"
+          element={!authUser ? <SignUpPage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/login"
+          element={!authUser ? <LoginPage /> : <Navigate to="/" replace />}
+        />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+        <Route
+          path="/settings"
+          element={authUser ? <SettingsPage /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/profile"
+          element={authUser ? <ProfilePage /> : <Navigate to="/login" replace />}
+        />
+        {/* Fallback Route for unmatched paths */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Toaster />
+      <Toaster position="top-right" />
     </>
   );
 };
