@@ -17,9 +17,21 @@ const HomePage = () => {
 
               {!selectedUser ? <NoChatSelected />: <ChatContainer />}
 
+
           </div>
         </div>
       </div>
+        {/* Footer */}
+      <footer className="text-center py-4 text-sm text-gray-500">
+        Powered by <a
+          href="https://praveenwebpage.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          Praveen Madiwal
+        </a>
+      </footer>
     </div>
   )
 }
