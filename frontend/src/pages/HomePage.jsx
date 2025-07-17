@@ -29,7 +29,7 @@ const HomePage = () => {
           rel="noopener noreferrer"
           className="text-blue-500 hover:underline"
         >
-          Praveen Madiwal
+          Praveen Madiwal.
         </a>
       </footer>
     </div>
